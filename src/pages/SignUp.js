@@ -1,6 +1,9 @@
 import { useState } from "react";
+import loginService from "../services/loginService";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [signUpData, setSignUpData] = useState({
     email: "",
     password: "",
@@ -15,6 +18,12 @@ const SignUp = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    loginService
+      .signup(signUpData.email, signUpData.password)
+      .then((response) => {
+        navigate("/signin");
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
