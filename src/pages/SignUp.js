@@ -1,9 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import loginService from "../services/loginService";
 import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    if (token !== null) {
+      navigate("/todo");
+    }
+  });
+
   const [signUpData, setSignUpData] = useState({
     email: "",
     password: "",
