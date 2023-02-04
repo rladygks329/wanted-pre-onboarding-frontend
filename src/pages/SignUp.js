@@ -1,21 +1,24 @@
-import React, { useEffect } from "react";
 import { useState } from "react";
+
 const SignUp = () => {
   const [signUpData, setSignUpData] = useState({
     email: "",
     password: "",
   });
+
   const handleChange = (event) => {
     setSignUpData({
       ...signUpData,
       [event.target.name]: event.target.value,
     });
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
   };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <input
         data-testid="email-input"
         type="text"
@@ -37,7 +40,6 @@ const SignUp = () => {
         disabled={
           !(signUpData.email.includes("@") && signUpData.password.length > 7)
         }
-        onSubmit={handleSubmit}
       >
         submit
       </button>
