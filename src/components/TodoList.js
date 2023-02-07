@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const TodoList = React.memo((props) => {
-  let { todo, isCompleted, userId } = props.data;
+  const { id, todo, isCompleted } = props.data;
+  const { update } = props;
   const [content, setContent] = useState(todo);
   const [completed, setCompleted] = useState(isCompleted);
   const handleChange = (e) => {
     setCompleted(!completed);
+    update(id, todo, !isCompleted);
   };
-  useEffect(() => {}, [props]);
   return (
     <li>
       <label>

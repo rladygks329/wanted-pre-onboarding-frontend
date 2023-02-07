@@ -32,7 +32,13 @@ const ToDo = () => {
         <button data-testid="new-todo-add-button">만들기</button>
       </form>
       {data.map((todoItem) => {
-        return <TodoList key={todoItem.id} data={todoItem} />;
+        return (
+          <TodoList
+            key={todoItem.id}
+            data={todoItem}
+            update={todoService.updateTodo}
+          />
+        );
       })}
     </div>
   );
