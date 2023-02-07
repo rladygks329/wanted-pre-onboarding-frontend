@@ -18,7 +18,7 @@ const ToDo = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     todoService.createTodo(content).then((response) => {
-      console.log(response);
+      setData([...data, response.data]);
     });
   };
   const handleChange = (e) => {
@@ -28,8 +28,8 @@ const ToDo = () => {
     <div>
       <form onSubmit={handleSubmit}>
         <div>todo</div>
-        <input onChange={handleChange} />
-        <button>만들기</button>
+        <input data-testid="new-todo-input" onChange={handleChange} />
+        <button data-testid="new-todo-add-button">만들기</button>
       </form>
       {data.map((todoItem) => {
         return <TodoList key={todoItem.id} data={todoItem} />;

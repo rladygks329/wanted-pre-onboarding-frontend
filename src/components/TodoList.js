@@ -1,20 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const TodoList = (props) => {
+const TodoList = React.memo((props) => {
   let { todo, isCompleted, userId } = props.data;
   const [content, setContent] = useState(todo);
   const [completed, setCompleted] = useState(isCompleted);
-  const handleClick = (e) => {
+  const handleChange = (e) => {
     setCompleted(!completed);
   };
+  useEffect(() => {}, [props]);
   return (
     <li>
       <label>
-        <input type="checkbox" checked={completed} onClick={handleClick} />
+        <input type="checkbox" checked={completed} onChange={handleChange} />
         <span>{content}</span>
       </label>
     </li>
   );
-};
+});
 
 export default TodoList;
