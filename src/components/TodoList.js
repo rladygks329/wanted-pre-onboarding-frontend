@@ -2,12 +2,11 @@ import React, { useState } from "react";
 
 const TodoList = React.memo((props) => {
   const { id, todo, isCompleted } = props.data;
-  const { update } = props;
+  const { update, remove } = props;
   const [content, setContent] = useState(todo);
   const [completed, setCompleted] = useState(isCompleted);
   const handleChange = (e) => {
-    setCompleted(!completed);
-    update(id, todo, !isCompleted);
+    update(id, todo, !isCompleted).then(setCompleted(!completed));
   };
   return (
     <li>
@@ -16,7 +15,14 @@ const TodoList = React.memo((props) => {
         <span>{content}</span>
       </label>
       <button data-testid="modify-button">수정</button>
-      <button data-testid="delete-button">삭제</button>
+      <button
+        data-testid="delete-button"
+        onClick={() => {
+          remove(id);
+        }}
+      >
+        삭제
+      </button>
     </li>
   );
 });

@@ -21,6 +21,11 @@ const ToDo = () => {
       setData([...data, response.data]);
     });
   };
+  const handleRemove = (id) => {
+    todoService
+      .deleteTodo(id)
+      .then(setData(data.filter((todo) => todo.id !== id)));
+  };
   const handleChange = (e) => {
     setContent(e.target.value);
   };
@@ -37,6 +42,7 @@ const ToDo = () => {
             key={todoItem.id}
             data={todoItem}
             update={todoService.updateTodo}
+            remove={handleRemove}
           />
         );
       })}
