@@ -19,6 +19,7 @@ const ToDo = () => {
     event.preventDefault();
     todoService.createTodo(content).then((response) => {
       setData([...data, response.data]);
+      setContent("");
     });
   };
   const handleRemove = (id) => {
