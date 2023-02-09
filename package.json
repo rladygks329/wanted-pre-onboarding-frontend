@@ -1,5 +1,6 @@
 {
   "name": "wanted-pre-onboarding-frontend",
+  "homepage": "https://rladygks329.github.io/wanted-pre-onboarding-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,7 +18,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "cp build/index.html build/404.html && gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -40,6 +43,7 @@
   "devDependencies": {
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "gh-pages": "^5.0.0",
     "prettier": "^2.8.3"
   }
 }
