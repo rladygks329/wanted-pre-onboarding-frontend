@@ -11,4 +11,5 @@ v18.12.1
 ## 실행 방법
 
 npm install
+
 npm start
