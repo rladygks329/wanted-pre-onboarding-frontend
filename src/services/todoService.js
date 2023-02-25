@@ -1,11 +1,11 @@
-import axiosAPI from "./axiosAPI";
+import axiosAPI from './axiosAPI';
 
 const todoService = {
   createTodo: (todo) => {
-    return axiosAPI.post("/todos", { todo });
+    return axiosAPI.post('/todos', { todo });
   },
   getTodos: () => {
-    return axiosAPI.get("/todos");
+    return axiosAPI.get('/todos');
   },
   updateTodo: (id, todo, isCompleted) => {
     return axiosAPI.put(`/todos/${id}`, { todo, isCompleted });

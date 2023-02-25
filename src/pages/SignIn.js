@@ -1,20 +1,20 @@
-import { useState, useEffect } from "react";
-import loginService from "../services/loginService";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import loginService from '../services/loginService';
+import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("access_token");
+    const token = localStorage.getItem('access_token');
     if (token !== null) {
-      navigate("/todo");
+      navigate('/todo');
     }
   });
 
   const [SignInData, setSignInData] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   const handleChange = (event) => {
@@ -30,8 +30,8 @@ const SignIn = () => {
       .login(SignInData.email, SignInData.password)
       .then((response) => {
         const token = response.data.access_token;
-        localStorage.setItem("access_token", token);
-        navigate("/todo");
+        localStorage.setItem('access_token', token);
+        navigate('/todo');
       })
       .catch((error) => console.log(error));
   };
@@ -39,27 +39,26 @@ const SignIn = () => {
   return (
     <form onSubmit={handleSubmit}>
       <input
-        data-testid="email-input"
-        type="text"
-        placeholder="이메일을 입력하세요"
-        name="email"
+        data-testid='email-input'
+        type='text'
+        placeholder='이메일을 입력하세요'
+        name='email'
         value={SignInData.email}
         onChange={handleChange}
       />
       <input
-        data-testid="password-input"
-        type="password"
-        placeholder="비밀번호를 입력하세요"
-        name="password"
+        data-testid='password-input'
+        type='password'
+        placeholder='비밀번호를 입력하세요'
+        name='password'
         value={SignInData.password}
         onChange={handleChange}
       />
       <button
-        data-testid="signin-button"
+        data-testid='signin-button'
         disabled={
-          !(SignInData.email.includes("@") && SignInData.password.length > 7)
-        }
-      >
+          !(SignInData.email.includes('@') && SignInData.password.length > 7)
+        }>
         submit
       </button>
     </form>
