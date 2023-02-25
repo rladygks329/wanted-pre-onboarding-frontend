@@ -53,7 +53,7 @@ const TodoList = React.memo((props) => {
         />
       </label>
       {todoItem.isEditing ? (
-        <Fragment>
+        <>
           <input
             data-testid="modify-input"
             value={todoItem.user_input}
@@ -65,9 +65,9 @@ const TodoList = React.memo((props) => {
           <button data-testid="cancel-button" onClick={handleCancel}>
             취소
           </button>
-        </Fragment>
+        </>
       ) : (
-        <Fragment>
+        <>
           <span>{todoItem.content}</span>
           <button data-testid="modify-button" onClick={toggleEditing}>
             수정
@@ -75,7 +75,7 @@ const TodoList = React.memo((props) => {
           <button data-testid="delete-button" onClick={handleRemove}>
             삭제
           </button>
-        </Fragment>
+        </>
       )}
     </li>
   );
