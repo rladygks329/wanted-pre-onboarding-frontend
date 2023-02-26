@@ -20,10 +20,12 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "cp build/index.html build/404.html && gh-pages -d build",
+    "deploy": "npm run env:gp && npm run build && cp build/index.html build/404.html && gh-pages -d build",
+    "deployAmazon": "npm run env:am && npm run build && aws s3 sync s3://login-todo-2023-02 build/",
     "lint": "eslint --cache .",
-    "prettier": "prettier --write --cache ."
+    "prettier": "prettier --write --cache .",
+    "env:gp": "echo PUBLICK_URL = wanted-pre-onboarding-frontend > .env",
+    "env:am": "echo PUBLICK_URL = / > .env"
   },
   "eslintConfig": {
     "extends": [
