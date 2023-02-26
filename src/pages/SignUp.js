@@ -36,6 +36,7 @@ const SignUp = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <h1>SignUp</h1>
       <input
         data-testid='email-input'
         type='text'

@@ -38,6 +38,7 @@ const SignIn = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <h1>SignIn</h1>
       <input
         data-testid='email-input'
         type='text'
