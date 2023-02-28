@@ -19,7 +19,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "build:amazon": "PUBLIC_URL=/ npm run build ",
-    "build:gh-page": "PUBLIC_URL=https://rladygks329.github.io/wanted-pre-onboarding-frontend",
+    "build:gh-page": "PUBLIC_URL=https://rladygks329.github.io/wanted-pre-onboarding-frontend npm run build && cp build/index.html build/404.html",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy:gh-page": "PUBLIC_URL=https://rladygks329.github.io/wanted-pre-onboarding-frontend npm run build && cp build/index.html build/404.html && gh-pages -d build",
