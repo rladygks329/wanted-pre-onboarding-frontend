@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "wanted-pre-onboarding-frontend/static/js/main.9569efac.js",
-    "index.html": "wanted-pre-onboarding-frontend/index.html",
-    "main.9569efac.js.map": "wanted-pre-onboarding-frontend/static/js/main.9569efac.js.map"
+    "main.js": "https://rladygks329.github.io/wanted-pre-onboarding-frontend/static/js/main.ddd67b58.js",
+    "index.html": "https://rladygks329.github.io/wanted-pre-onboarding-frontend/index.html",
+    "main.ddd67b58.js.map": "https://rladygks329.github.io/wanted-pre-onboarding-frontend/static/js/main.ddd67b58.js.map"
   },
   "entrypoints": [
-    "static/js/main.9569efac.js"
+    "static/js/main.ddd67b58.js"
   ]
 }
