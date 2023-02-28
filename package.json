@@ -15,12 +15,17 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "prepare": "husky install",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "cp build/index.html build/404.html && gh-pages -d build"
+    "deploy": "npm run env:gp && npm run build && cp build/index.html build/404.html && gh-pages -d build",
+    "deployAmazon": "npm run env:am && npm run build && aws s3 sync s3://login-todo-2023-02 build/",
+    "lint": "eslint --cache .",
+    "prettier": "prettier --write --cache .",
+    "env:gp": "echo PUBLICK_URL = wanted-pre-onboarding-frontend > .env",
+    "env:am": "echo PUBLICK_URL = / > .env"
   },
   "eslintConfig": {
     "extends": [
@@ -44,6 +49,19 @@
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
     "gh-pages": "^5.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.2",
     "prettier": "^2.8.3"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!axios)"
+    ]
   }
 }

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState } from 'react';
 
 const TodoList = React.memo((props) => {
   const { id, todo, isCompleted } = props.data;
@@ -47,35 +47,35 @@ const TodoList = React.memo((props) => {
     <li>
       <label>
         <input
-          type="checkbox"
+          type='checkbox'
           checked={todoItem.isCompleted}
           onChange={toggleComplete}
         />
       </label>
       {todoItem.isEditing ? (
-        <Fragment>
+        <>
           <input
-            data-testid="modify-input"
+            data-testid='modify-input'
             value={todoItem.user_input}
             onChange={handleChange}
           />
-          <button data-testid="submit-button" onClick={handleEdit}>
+          <button data-testid='submit-button' onClick={handleEdit}>
             제출
           </button>
-          <button data-testid="cancel-button" onClick={handleCancel}>
+          <button data-testid='cancel-button' onClick={handleCancel}>
             취소
           </button>
-        </Fragment>
+        </>
       ) : (
-        <Fragment>
+        <>
           <span>{todoItem.content}</span>
-          <button data-testid="modify-button" onClick={toggleEditing}>
+          <button data-testid='modify-button' onClick={toggleEditing}>
             수정
           </button>
-          <button data-testid="delete-button" onClick={handleRemove}>
+          <button data-testid='delete-button' onClick={handleRemove}>
             삭제
           </button>
-        </Fragment>
+        </>
       )}
     </li>
   );
