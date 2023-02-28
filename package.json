@@ -1,6 +1,6 @@
 {
   "name": "wanted-pre-onboarding-frontend",
-  "homepage": "https://rladygks329.github.io/wanted-pre-onboarding-frontend",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -18,14 +18,14 @@
     "prepare": "husky install",
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:amazon": "PUBLIC_URL=/ npm run build ",
+    "build:gh-page": "PUBLIC_URL=/wanted-pre-onboarding-frontend npm run build && cp build/index.html build/404.html",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "npm run env:gp && npm run build && cp build/index.html build/404.html && gh-pages -d build",
-    "deployAmazon": "npm run env:am && npm run build && aws s3 sync s3://login-todo-2023-02 build/",
+    "deploy:gh-page": "npm run build:gh-page && cp build/index.html build/404.html && gh-pages -d build",
+    "deploy:amazon": "npm run build:amazon && aws s3 sync build/ s3://login-todo-2023-02",
     "lint": "eslint --cache .",
-    "prettier": "prettier --write --cache .",
-    "env:gp": "echo PUBLICK_URL = wanted-pre-onboarding-frontend > .env",
-    "env:am": "echo PUBLICK_URL = / > .env"
+    "prettier": "prettier --write --cache ."
   },
   "eslintConfig": {
     "extends": [

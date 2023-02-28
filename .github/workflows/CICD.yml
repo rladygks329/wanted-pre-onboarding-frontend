@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
@@ -18,8 +15,7 @@ jobs:
       - uses: actions/checkout@master
       - run: npm install
       - run: npm run test
-      - run: npm run env:am
-      - run: npm run build
+      - run: npm run build:amazon
       - name: deploy to s3
         uses: jakejarvis/s3-sync-action@master
         with:
@@ -30,3 +26,10 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'ap-northeast-2'
           SOURCE_DIR: 'build'
+      - name: Build gh-page
+        run: npm run build:gh-page
+      - name: Deploy gh-page
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GH_ACTIONS_TOKEN }}
+          publish_dir: ./build
