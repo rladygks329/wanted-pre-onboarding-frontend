@@ -1,7 +1,8 @@
 import loginService from '../services/loginService';
 import { useNavigate } from 'react-router-dom';
 import useInput from '../hooks/useInput';
-
+import { ACCESS_TOKEN_KEY } from '../utils/constants';
+import { validateEmail, validatePassword } from '../utils/validation';
 const SignIn = () => {
   const navigate = useNavigate();
   const [email, updateEmail, setEmail] = useInput('');
@@ -13,7 +14,7 @@ const SignIn = () => {
       .login(email, password)
       .then((response) => {
         const token = response.data.access_token;
-        localStorage.setItem('access_token', token);
+        localStorage.setItem(ACCESS_TOKEN_KEY, token);
         setEmail('');
         setPassword('');
         navigate('/todo');
@@ -42,7 +43,7 @@ const SignIn = () => {
       />
       <button
         data-testid='signin-button'
-        disabled={!(email.includes('@') && password.length > 7)}>
+        disabled={!(validateEmail(email) && validatePassword(password))}>
         submit
       </button>
     </form>

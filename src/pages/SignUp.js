@@ -1,6 +1,7 @@
 import loginService from '../services/loginService';
 import { useNavigate } from 'react-router-dom';
 import useInput from '../hooks/useInput';
+import { validateEmail, validatePassword } from '../utils/validation';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ const SignUp = () => {
       />
       <button
         data-testid='signup-button'
-        disabled={!(email.includes('@') && password.length > 7)}>
+        disabled={!(validateEmail(email) && validatePassword(password))}>
         submit
       </button>
     </form>
