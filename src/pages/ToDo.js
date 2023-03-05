@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import TodoList from '../components/TodoList';
 import todoService from '../services/todoService';
 
 const ToDo = () => {
-  const navigate = useNavigate();
   const [content, setContent] = useState('');
   const [data, setData] = useState([]);
   useEffect(() => {
-    if (localStorage.getItem('access_token') === null) {
-      navigate('/signin');
-    }
     todoService.getTodos().then((response) => {
       setData(response.data);
     });

@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import loginService from '../services/loginService';
 import { useNavigate } from 'react-router-dom';
 import useInput from '../hooks/useInput';
@@ -7,13 +6,6 @@ const SignIn = () => {
   const navigate = useNavigate();
   const [email, updateEmail, setEmail] = useInput('');
   const [password, updatePassword, setPassword] = useInput('');
-
-  useEffect(() => {
-    const token = localStorage.getItem('access_token');
-    if (token !== null) {
-      navigate('/todo');
-    }
-  });
 
   const handleSubmit = (event) => {
     event.preventDefault();
