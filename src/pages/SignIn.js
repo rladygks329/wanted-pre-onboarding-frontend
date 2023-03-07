@@ -1,36 +1,22 @@
-import { useState, useEffect } from 'react';
 import loginService from '../services/loginService';
 import { useNavigate } from 'react-router-dom';
-
+import useInput from '../hooks/useInput';
+import { ACCESS_TOKEN_KEY } from '../utils/constants';
+import { validateEmail, validatePassword } from '../utils/validation';
 const SignIn = () => {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const token = localStorage.getItem('access_token');
-    if (token !== null) {
-      navigate('/todo');
-    }
-  });
-
-  const [SignInData, setSignInData] = useState({
-    email: '',
-    password: '',
-  });
-
-  const handleChange = (event) => {
-    setSignInData({
-      ...SignInData,
-      [event.target.name]: event.target.value,
-    });
-  };
+  const [email, updateEmail, setEmail] = useInput('');
+  const [password, updatePassword, setPassword] = useInput('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
     loginService
-      .login(SignInData.email, SignInData.password)
+      .login(email, password)
       .then((response) => {
         const token = response.data.access_token;
-        localStorage.setItem('access_token', token);
+        localStorage.setItem(ACCESS_TOKEN_KEY, token);
+        setEmail('');
+        setPassword('');
         navigate('/todo');
       })
       .catch((error) => console.log(error));
@@ -44,22 +30,20 @@ const SignIn = () => {
         type='text'
         placeholder='이메일을 입력하세요'
         name='email'
-        value={SignInData.email}
-        onChange={handleChange}
+        value={email}
+        onChange={updateEmail}
       />
       <input
         data-testid='password-input'
         type='password'
         placeholder='비밀번호를 입력하세요'
         name='password'
-        value={SignInData.password}
-        onChange={handleChange}
+        value={password}
+        onChange={updatePassword}
       />
       <button
         data-testid='signin-button'
-        disabled={
-          !(SignInData.email.includes('@') && SignInData.password.length > 7)
-        }>
+        disabled={!(validateEmail(email) && validatePassword(password))}>
         submit
       </button>
     </form>

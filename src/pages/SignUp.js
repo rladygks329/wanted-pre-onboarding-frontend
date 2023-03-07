@@ -1,35 +1,21 @@
-import { useState, useEffect } from 'react';
 import loginService from '../services/loginService';
 import { useNavigate } from 'react-router-dom';
+import useInput from '../hooks/useInput';
+import { validateEmail, validatePassword } from '../utils/validation';
 
 const SignUp = () => {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const token = localStorage.getItem('access_token');
-    if (token !== null) {
-      navigate('/todo');
-    }
-  });
-
-  const [signUpData, setSignUpData] = useState({
-    email: '',
-    password: '',
-  });
-
-  const handleChange = (event) => {
-    setSignUpData({
-      ...signUpData,
-      [event.target.name]: event.target.value,
-    });
-  };
+  const [email, updateEmail, setEmail] = useInput('');
+  const [password, updatePassword, setPassword] = useInput('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
     loginService
-      .signup(signUpData.email, signUpData.password)
+      .signup(email, password)
       .then((response) => {
         navigate('/signin');
+        setEmail('');
+        setPassword('');
       })
       .catch((error) => console.log(error));
   };
@@ -42,22 +28,20 @@ const SignUp = () => {
         type='text'
         placeholder='이메일을 입력하세요'
         name='email'
-        value={signUpData.email}
-        onChange={handleChange}
+        value={email}
+        onChange={updateEmail}
       />
       <input
         data-testid='password-input'
         type='password'
         placeholder='비밀번호를 입력하세요'
         name='password'
-        value={signUpData.password}
-        onChange={handleChange}
+        value={password}
+        onChange={updatePassword}
       />
       <button
         data-testid='signup-button'
-        disabled={
-          !(signUpData.email.includes('@') && signUpData.password.length > 7)
-        }>
+        disabled={!(validateEmail(email) && validatePassword(password))}>
         submit
       </button>
     </form>
