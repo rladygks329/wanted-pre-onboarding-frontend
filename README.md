@@ -2,7 +2,7 @@
 
 ## 배포 페이지 주소
 
-> AWS, github-page 두 군데에 github action을 통해 자동으로 배포되고 있습니다.
+> AWS, github-page 두 곳에 github action을 통해 자동으로 배포되고 있습니다.
 
 - https://rladygks329.github.io/wanted-pre-onboarding-frontend/
 - http://login-todo-2023-02.s3-website.ap-northeast-2.amazonaws.com/
