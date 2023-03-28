@@ -9,8 +9,8 @@ function App() {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
-        <Route path='/' element={<Navigate to={'todo'} />} />
-        <Route path='/*' element={<Navigate to='/'></Navigate>} />
+        <Route path='/*' element={<Navigate to='/todo' />} />
+
         <Route element={<AuthRoute />}>
           <Route path='/todo' element={<ToDo />} />
         </Route>
