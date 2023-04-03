@@ -2,7 +2,7 @@ import axios, { InternalAxiosRequestConfig } from 'axios';
 import { ACCESS_TOKEN_KEY } from '../utils/constants';
 
 const axiosAPI = axios.create({
-  baseURL: 'https://pre-onboarding-selection-task.shop/',
+  baseURL: 'https://www.pre-onboarding-selection-task.shop/',
   headers: {
     Authorization: 'Bearer ',
     'Content-Type': 'application/json',

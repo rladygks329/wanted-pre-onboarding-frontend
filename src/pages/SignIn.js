@@ -5,8 +5,8 @@ import { ACCESS_TOKEN_KEY } from '../utils/constants';
 import { validateEmail, validatePassword } from '../utils/validation';
 const SignIn = () => {
   const navigate = useNavigate();
-  const [email, updateEmail, setEmail] = useInput('');
-  const [password, updatePassword, setPassword] = useInput('');
+  const [email, updateEmail] = useInput('');
+  const [password, updatePassword] = useInput('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -15,8 +15,6 @@ const SignIn = () => {
       .then((response) => {
         const token = response.data.access_token;
         localStorage.setItem(ACCESS_TOKEN_KEY, token);
-        setEmail('');
-        setPassword('');
         navigate('/todo');
       })
       .catch((error) => console.log(error));
