@@ -1,6 +1,6 @@
 interface TokenRepository {
-  get: (key: string) => string;
-  set: (key: string) => void;
+  get: () => string;
+  set: (token: string) => void;
   clear: () => void;
 }
 

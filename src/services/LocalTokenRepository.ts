@@ -1,4 +1,4 @@
-import TokenRepository from './interfaces/tokenRepository';
+import TokenRepository from './interfaces/TokenRepository';
 import { ACCESS_TOKEN_KEY } from '../utils/constants';
 
 class LocalTokenRepository implements TokenRepository {
