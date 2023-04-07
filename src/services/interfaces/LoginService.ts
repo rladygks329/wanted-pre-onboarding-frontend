@@ -1,5 +1,5 @@
 import HttpClient from './HttpClient';
-import TokenRepository from './TokenRepository';
+import TokenRepository from '../TokenRepository';
 
 interface LoginService {
   httpClient: HttpClient;

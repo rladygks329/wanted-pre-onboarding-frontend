@@ -1,6 +1,6 @@
 import HttpClient from './interfaces/HttpClient';
 import LoginService from './interfaces/LoginService';
-import TokenRepository from './interfaces/TokenRepository';
+import TokenRepository from './TokenRepository';
 
 class LoginServiceImpl implements LoginService {
   tokenRepo: TokenRepository;

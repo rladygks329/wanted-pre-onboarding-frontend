@@ -1,4 +1,4 @@
-import TokenRepository from './TokenRepository';
+import TokenRepository from '../TokenRepository';
 
 interface HttpClient {
   baseURL: string;

@@ -1,5 +1,5 @@
 import HttpClient from './interfaces/HttpClient';
-import TokenRepository from './interfaces/TokenRepository';
+import TokenRepository from './TokenRepository';
 
 class HttpClientImpl implements HttpClient {
   baseURL: string;
