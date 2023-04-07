@@ -8,7 +8,7 @@ class TokenRepository {
   }
 
   get() {
-    return this.storage.getItem(this.#TOKEN_KEY);
+    return this.storage.getItem(this.#TOKEN_KEY) ?? '';
   }
 
   set(newToken: string) {
