@@ -16,10 +16,9 @@ test('MockStorage', () => {
   expect(storage.getItem('1')).toBe('aaab');
   expect(storage.length).toBe(2);
 
+  expect(storage.key(0)).toBe('1');
+  expect(storage.key(1)).toBe('2');
+
   storage.clear();
   expect(storage.length).toBe(0);
-
-  expect(storage.key(0)).toBe('1');
-
-  expect(storage.key(1)).toBe('2');
 });
