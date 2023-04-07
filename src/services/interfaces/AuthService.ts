@@ -4,8 +4,8 @@ import TokenRepository from '../TokenRepository';
 interface LoginService {
   httpClient: HttpClient;
   tokenRepo: TokenRepository;
-  login(): Promise<void>;
-  signup(): Promise<void>;
+  login(email: string, password: string): Promise<void>;
+  signup(email: string, password: string): Promise<void>;
 }
 
 export default LoginService;
