@@ -1,11 +1,12 @@
 import HttpClient from './HttpClient';
 import TokenRepository from '../TokenRepository';
 
-interface LoginService {
+interface AuthService {
   httpClient: HttpClient;
   tokenRepo: TokenRepository;
-  login(email: string, password: string): Promise<void>;
+
+  signin(email: string, password: string): Promise<void>;
   signup(email: string, password: string): Promise<void>;
 }
 
-export default LoginService;
+export default AuthService;
