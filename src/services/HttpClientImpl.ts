@@ -25,7 +25,7 @@ class HttpClientImpl implements HttpClient {
           alert(`에러 코드: ${response.status}`);
           throw response;
         }
-        return response.json;
+        return response.json();
       });
   }
 }
