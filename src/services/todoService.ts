@@ -1,12 +1,6 @@
 import { AxiosPromise } from 'axios';
 import axiosAPI from './axiosAPI';
-
-type Todo = {
-  id: number;
-  todo: string;
-  isCompleted: Boolean;
-  userId: number;
-};
+import { Todo } from '../types/Todo';
 
 const todoService = {
   createTodo: (todo: string) => {
