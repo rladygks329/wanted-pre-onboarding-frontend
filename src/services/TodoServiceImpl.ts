@@ -1,6 +1,6 @@
 import { Todo } from '../types/Todo';
-import HttpClient from './interfaces/HttpClient';
-import TodoService from './interfaces/TodoService';
+import HttpClient from '../types/HttpClient';
+import TodoService from '../types/TodoService';
 
 class TodoServiceImpl implements TodoService {
   httpClient: HttpClient;

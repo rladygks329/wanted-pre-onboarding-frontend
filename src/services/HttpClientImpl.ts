@@ -1,4 +1,4 @@
-import HttpClient from './interfaces/HttpClient';
+import HttpClient from '../types/HttpClient';
 import TokenRepository from './TokenRepository';
 
 class HttpClientImpl implements HttpClient {

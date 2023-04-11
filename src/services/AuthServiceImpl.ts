@@ -1,5 +1,5 @@
-import HttpClient from './interfaces/HttpClient';
-import LoginService from './interfaces/AuthService';
+import HttpClient from '../types/HttpClient';
+import LoginService from '../types/AuthService';
 import TokenRepository from './TokenRepository';
 
 class AuthServiceImpl implements LoginService {
