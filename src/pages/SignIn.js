@@ -2,6 +2,7 @@ import loginService from '../services/loginService';
 import { useNavigate } from 'react-router-dom';
 import useInput from '../hooks/useInput';
 import { validateEmail, validatePassword } from '../utils/validation';
+
 const SignIn = () => {
   const navigate = useNavigate();
   const [email, updateEmail] = useInput('');
