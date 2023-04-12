@@ -1,11 +1,12 @@
 import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom';
+import { Header } from './components/Header';
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
 import ToDo from './pages/ToDo';
 import AuthRoute from './routers/AuthRoute';
 import NonAuthRoute from './routers/NonAuthRoute';
-import { Header } from './components/Header';
 import styled from 'styled-components';
+import a from './assets/background.jpg';
 
 function App() {
   return (
@@ -29,9 +30,10 @@ function App() {
 }
 
 const Wrapper = styled.div`
+  height: 100vh;
+  background-image: url(${a});
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
   row-gap: 1rem;
 `;

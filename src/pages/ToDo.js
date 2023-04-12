@@ -28,7 +28,6 @@ const ToDo = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <h1>todo</h1>
         <input data-testid='new-todo-input' onChange={handleChange} />
         <button data-testid='new-todo-add-button'>만들기</button>
       </form>

@@ -12,6 +12,7 @@ export const Header = () => {
           <div>{today.getDate()}</div>
         </RightBox>
       </DateWrapper>
+      <div>Todo List</div>
       <div>수요일</div>
     </HeaderWrapper>
   );
@@ -27,7 +28,7 @@ const HeaderWrapper = styled.header`
 
 const DateWrapper = styled.div`
   display: flex;
-  justify-content: center; /* 가로 가운데 정렬 */
+  justify-content: center;
   align-items: center;
 `;
 
@@ -40,7 +41,6 @@ const LeftBox = styled.div`
   height: 100%;
   width: 3rem;
   color: black;
-  background-color: white;
 `;
 
 const RightBox = styled.div`
