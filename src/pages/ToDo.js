@@ -1,30 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import TodoList from '../components/TodoList';
-import todoService from '../services/todoService';
+import { useTodo } from '../contexts/TodoContext';
 
 const ToDo = () => {
   const [content, setContent] = useState('');
   const [data, setData] = useState([]);
+  const { getTodos, updateTodo, deleteTodo, createTodo } = useTodo();
+
   useEffect(() => {
-    todoService.getTodos().then((response) => {
-      setData(response.data);
+    getTodos().then((data) => {
+      setData(data);
     });
   }, []);
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    todoService.createTodo(content).then((response) => {
+    createTodo(content).then((response) => {
       setData([...data, response.data]);
       setContent('');
     });
   };
+
   const handleRemove = (id) => {
-    todoService
-      .deleteTodo(id)
-      .then(setData(data.filter((todo) => todo.id !== id)));
+    deleteTodo(id).then(setData(data.filter((todo) => todo.id !== id)));
   };
+
   const handleChange = (e) => {
     setContent(e.target.value);
   };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -36,7 +40,7 @@ const ToDo = () => {
           <TodoList
             key={todoItem.id}
             data={todoItem}
-            update={todoService.updateTodo}
+            update={updateTodo}
             remove={handleRemove}
           />
         );
