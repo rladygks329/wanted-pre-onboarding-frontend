@@ -1,7 +1,7 @@
 type Todo = {
   id: number;
   todo: string;
-  isCompleted: Boolean;
+  isCompleted: boolean;
   userId: number;
 };
 

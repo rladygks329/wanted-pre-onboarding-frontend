@@ -1,47 +1,55 @@
 import React, { Fragment, useState } from 'react';
+import { useTodo } from '../contexts/TodoContext';
+import { Todo } from '../types/Todo';
 
-const TodoList = React.memo((props) => {
+type propType = {
+  data: Todo;
+};
+
+const TodoItem = React.memo((props: propType) => {
   const { id, todo, isCompleted } = props.data;
-  const { update, remove } = props;
+  const { updateTodo, deleteTodo } = useTodo();
+
   const [todoItem, setTodoItem] = useState({
     content: todo,
     user_input: todo,
     isEditing: false,
     isCompleted: isCompleted,
   });
-  const toggleComplete = (e) => {
-    update(id, todoItem.content, !todoItem.isCompleted);
+
+  const toggleComplete = (e: any) => {
+    updateTodo(id, todoItem.content, !todoItem.isCompleted);
     setTodoItem({
       ...todoItem,
       isCompleted: !todoItem.isCompleted,
     });
   };
-  const toggleEditing = (e) => {
+  const toggleEditing = (e: any) => {
     setTodoItem({
       ...todoItem,
       isEditing: !todoItem.isEditing,
     });
   };
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     setTodoItem({ ...todoItem, user_input: e.target.value });
   };
-  const handleCancel = (e) => {
+  const handleCancel = (e: any) => {
     setTodoItem({
       ...todoItem,
       user_input: todoItem.content,
       isEditing: false,
     });
   };
-  const handleEdit = (e) => {
-    update(id, todoItem.user_input, todoItem.isCompleted);
+  const handleEdit = (e: any) => {
+    updateTodo(id, todoItem.user_input, todoItem.isCompleted);
     setTodoItem({
       ...todoItem,
       content: todoItem.user_input,
       isEditing: false,
     });
   };
-  const handleRemove = (e) => {
-    remove(id);
+  const handleRemove = (e: any) => {
+    deleteTodo(id);
   };
   return (
     <li>
@@ -81,4 +89,4 @@ const TodoList = React.memo((props) => {
   );
 });
 
-export default TodoList;
+export default TodoItem;

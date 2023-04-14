@@ -2,7 +2,7 @@ import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom';
 import { Header } from './components/Header';
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
-import ToDo from './pages/ToDo';
+import TodoPage from './pages/TodoPage';
 import AuthRoute from './routers/AuthRoute';
 import NonAuthRoute from './routers/NonAuthRoute';
 import styled from 'styled-components';
@@ -17,7 +17,7 @@ function App() {
           <Route path='/*' element={<Navigate to='/todo' />} />
 
           <Route element={<AuthRoute />}>
-            <Route path='/todo' element={<ToDo />} />
+            <Route path='/todo' element={<TodoPage />} />
           </Route>
           <Route element={<NonAuthRoute />}>
             <Route path='/signup' element={<SignUp />} />

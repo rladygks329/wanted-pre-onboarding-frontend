@@ -1,14 +1,14 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
-const useInput = (initialState: String) => {
+const useInput = (initialState: string) => {
   const [data, setData] = useState(initialState);
 
-  const updateData = (event: InputEvent) => {
+  const updateData = (event: ChangeEvent) => {
     const { value } = event.target as HTMLInputElement;
     setData(value);
   };
 
-  return [data, updateData];
+  return { data, updateData };
 };
 
 export default useInput;
