@@ -12,7 +12,7 @@ export const Header = () => {
           <div>{today.getDate()}</div>
         </RightBox>
       </DateWrapper>
-      <div>Todo List</div>
+      <HeaderTitle>Todo List</HeaderTitle>
       <div>수요일</div>
     </HeaderWrapper>
   );
@@ -24,6 +24,7 @@ const HeaderWrapper = styled.header`
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const DateWrapper = styled.div`
@@ -46,4 +47,9 @@ const LeftBox = styled.div`
 const RightBox = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const HeaderTitle = styled.div`
+  font-size: larger;
+  font-weight: 1000;
 `;
