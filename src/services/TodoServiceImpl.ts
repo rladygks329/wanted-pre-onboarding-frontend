@@ -32,7 +32,7 @@ class TodoServiceImpl implements TodoService {
 
   async deleteTodo(id: number): Promise<void> {
     return this.httpClient
-      .fetch(`/todos${id}`, { method: 'DELETE' })
+      .fetch(`/todos/${id}`, { method: 'DELETE' })
       .then((response) => {
         return;
       });
@@ -44,7 +44,10 @@ class TodoServiceImpl implements TodoService {
     isCompleted: boolean
   ): Promise<Todo> {
     return this.httpClient
-      .fetch(`/todos${id}`, { todo, isCompleted })
+      .fetch(`/todos/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify({ todo, isCompleted }),
+      })
       .then((response) => {
         return response.json();
       });
