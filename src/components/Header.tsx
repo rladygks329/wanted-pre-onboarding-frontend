@@ -19,7 +19,7 @@ export const Header = () => {
 };
 
 const HeaderWrapper = styled.header`
-  width: 80%;
+  width: 100%;
   height: auto;
   margin: 0 auto;
   display: flex;

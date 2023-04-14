@@ -3,6 +3,7 @@ import useInput from '../hooks/useInput';
 import { useTodo } from '../contexts/TodoContext';
 import { useDispatch } from 'react-redux';
 import { addTodo } from '../reudx/actions';
+import styled from 'styled-components';
 
 const AddTodo = () => {
   const { data: content, updateData: setContent } = useInput('');
@@ -21,11 +22,18 @@ const AddTodo = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input data-testid='new-todo-input' onChange={setContent} />
-      <button data-testid='new-todo-add-button'>만들기</button>
-    </form>
+    <AddTodoWrapper>
+      <form onSubmit={handleSubmit}>
+        <input data-testid='new-todo-input' onChange={setContent} />
+        <button data-testid='new-todo-add-button'>만들기</button>
+      </form>
+    </AddTodoWrapper>
   );
 };
 
+const AddTodoWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
 export { AddTodo };

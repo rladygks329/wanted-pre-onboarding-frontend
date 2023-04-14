@@ -10,29 +10,35 @@ import a from './assets/background.jpg';
 
 function App() {
   return (
-    <Wrapper>
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
-        <Header />
-        <Routes>
-          <Route path='/*' element={<Navigate to='/todo' />} />
+    <BackGround>
+      <Wrapper>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
+          <Header />
+          <Routes>
+            <Route path='/*' element={<Navigate to='/todo' />} />
 
-          <Route element={<AuthRoute />}>
-            <Route path='/todo' element={<TodoPage />} />
-          </Route>
-          <Route element={<NonAuthRoute />}>
-            <Route path='/signup' element={<SignUp />} />
-            <Route path='/signin' element={<SignIn />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </Wrapper>
+            <Route element={<AuthRoute />}>
+              <Route path='/todo' element={<TodoPage />} />
+            </Route>
+            <Route element={<NonAuthRoute />}>
+              <Route path='/signup' element={<SignUp />} />
+              <Route path='/signin' element={<SignIn />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </Wrapper>
+    </BackGround>
   );
 }
 
-const Wrapper = styled.div`
+const BackGround = styled.div`
   height: 100vh;
   background-image: url(${a});
+`;
+const Wrapper = styled.div`
+  width: 80%;
   display: flex;
+  margin: 0 auto;
   align-items: center;
   flex-direction: column;
   row-gap: 1rem;
