@@ -1,25 +1,25 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+
 import { useTodo } from '../contexts/TodoContext';
-import TodoItem from '../components/TodoItem';
-import { Todo } from '../types/Todo';
 import { AddTodo } from '../components/AddTodo';
+import { TodoList } from '../components/TodoList';
+import { useDispatch } from 'react-redux';
+import { setTodo } from '../reudx/actions';
 
 const TodoPage = () => {
-  const [data, setData] = useState<Todo[]>([]);
   const { getTodos } = useTodo();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getTodos().then((data) => {
-      setData(data);
+      dispatch(setTodo(data));
     });
   }, []);
 
   return (
     <div>
       <AddTodo />
-      {data.map((todoItem) => {
-        return <TodoItem key={todoItem.id} data={todoItem} />;
-      })}
+      <TodoList />
     </div>
   );
 };
