@@ -38,3 +38,5 @@ export const reducer = (state = initialState, action: actionType) => {
     }
   }
 };
+
+export type RootState = ReturnType<typeof reducer>;

@@ -9,10 +9,11 @@ import TokenRepository from './services/TokenRepository';
 import HttpClientImpl from './services/HttpClientImpl';
 import { TodoServiceImpl } from './services/TodoServiceImpl';
 import { ACCESS_TOKEN_KEY, BASE_URL } from './utils/constants';
+import { Provider } from 'react-redux';
 
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
-
+import store from './reudx/store';
 const GlobalStyles = createGlobalStyle`
     ${reset};
 `;
@@ -30,11 +31,13 @@ root.render(
   <React.StrictMode>
     <>
       <GlobalStyles />
-      <AuthProvider authService={authService}>
-        <TodoProvider todoService={todoService}>
-          <App />
-        </TodoProvider>
-      </AuthProvider>
+      <Provider store={store}>
+        <AuthProvider authService={authService}>
+          <TodoProvider todoService={todoService}>
+            <App />
+          </TodoProvider>
+        </AuthProvider>
+      </Provider>
     </>
   </React.StrictMode>
 );
