@@ -17,10 +17,10 @@ const TodoPage = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <AddTodo />
       <TodoList />
-    </div>
+    </>
   );
 };
 

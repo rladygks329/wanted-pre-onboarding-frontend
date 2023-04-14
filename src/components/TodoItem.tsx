@@ -1,72 +1,60 @@
-import React, { Fragment, useState } from 'react';
+import React from 'react';
 import { useTodo } from '../contexts/TodoContext';
 import { Todo } from '../types/Todo';
+import useToggle from '../hooks/useToggle';
+import useInput from '../hooks/useInput';
+import { useDispatch } from 'react-redux';
+import {
+  updateTodo as reduxUpdate,
+  deleteTodo as reduxDelete,
+} from '../reudx/actions';
 
-type propType = {
-  data: Todo;
-};
-
-const TodoItem = React.memo((props: propType) => {
-  const { id, todo, isCompleted } = props.data;
+const TodoItem = React.memo((props: Todo) => {
+  const { id, todo, isCompleted } = props;
   const { updateTodo, deleteTodo } = useTodo();
+  const dispatch = useDispatch();
 
-  const [todoItem, setTodoItem] = useState({
-    content: todo,
-    user_input: todo,
-    isEditing: false,
-    isCompleted: isCompleted,
-  });
+  const { data: input, updateData: setInput } = useInput(todo);
+  const { data: isEditing, toggleData: toggleIsEditting } = useToggle(false);
 
   const toggleComplete = (e: any) => {
-    updateTodo(id, todoItem.content, !todoItem.isCompleted);
-    setTodoItem({
-      ...todoItem,
-      isCompleted: !todoItem.isCompleted,
+    updateTodo(id, input, !isCompleted).then((todo) => {
+      dispatch(reduxUpdate(todo));
     });
   };
-  const toggleEditing = (e: any) => {
-    setTodoItem({
-      ...todoItem,
-      isEditing: !todoItem.isEditing,
+
+  const handleEdit = (e: any) => {
+    if (input.length === 0) {
+      alert('내용이 비어있어요!');
+      return;
+    }
+    updateTodo(id, input, isCompleted).then((todo) => {
+      dispatch(reduxUpdate(todo));
     });
+    toggleIsEditting();
   };
-  const handleChange = (e: any) => {
-    setTodoItem({ ...todoItem, user_input: e.target.value });
+
+  const handleRemove = (e: any) => {
+    deleteTodo(id).then(() => {
+      dispatch(reduxDelete(id));
+    });
   };
   const handleCancel = (e: any) => {
-    setTodoItem({
-      ...todoItem,
-      user_input: todoItem.content,
-      isEditing: false,
-    });
+    toggleIsEditting();
   };
-  const handleEdit = (e: any) => {
-    updateTodo(id, todoItem.user_input, todoItem.isCompleted);
-    setTodoItem({
-      ...todoItem,
-      content: todoItem.user_input,
-      isEditing: false,
-    });
-  };
-  const handleRemove = (e: any) => {
-    deleteTodo(id);
-  };
+
   return (
     <li>
       <label>
         <input
           type='checkbox'
-          checked={todoItem.isCompleted}
+          checked={isCompleted}
           onChange={toggleComplete}
         />
       </label>
-      {todoItem.isEditing ? (
+      {isEditing ? (
         <>
-          <input
-            data-testid='modify-input'
-            value={todoItem.user_input}
-            onChange={handleChange}
-          />
+          <input data-testid='modify-input' value={input} onChange={setInput} />
           <button data-testid='submit-button' onClick={handleEdit}>
             제출
           </button>
@@ -76,8 +64,8 @@ const TodoItem = React.memo((props: propType) => {
         </>
       ) : (
         <>
-          <span>{todoItem.content}</span>
-          <button data-testid='modify-button' onClick={toggleEditing}>
+          <span>{todo}</span>
+          <button data-testid='modify-button' onClick={toggleIsEditting}>
             수정
           </button>
           <button data-testid='delete-button' onClick={handleRemove}>

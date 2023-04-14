@@ -1,11 +1,10 @@
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 
 const useToggle = (initialState: boolean) => {
   const [data, setData] = useState(initialState);
 
-  const toggleData = (event: ChangeEvent) => {
-    const { value } = event.target as HTMLInputElement;
-    setData(!value);
+  const toggleData = () => {
+    setData(!data);
   };
 
   return { data, toggleData };
