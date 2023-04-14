@@ -1,22 +1,25 @@
-import loginService from '../services/loginService';
 import { useNavigate } from 'react-router-dom';
 import useInput from '../hooks/useInput';
 import { validateEmail, validatePassword } from '../utils/validation';
-const SignIn = () => {
-  const navigate = useNavigate();
-  const [email, updateEmail] = useInput('');
-  const [password, updatePassword] = useInput('');
+import { useAuth } from '../contexts/AuthContext';
+import { FormEvent } from 'react';
 
-  const handleSubmit = (event) => {
+const SignUpPage = () => {
+  const navigate = useNavigate();
+  const { data: email, updateData: updateEmail } = useInput('');
+  const { data: password, updateData: updatePassword } = useInput('');
+  const { signup } = useAuth();
+
+  const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    loginService.login(email, password).then(() => {
-      navigate('/todo');
+    signup(email, password).then(() => {
+      navigate('/signin');
     });
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1>SignIn</h1>
+      <h1>SignUp</h1>
       <input
         data-testid='email-input'
         type='text'
@@ -34,7 +37,7 @@ const SignIn = () => {
         onChange={updatePassword}
       />
       <button
-        data-testid='signin-button'
+        data-testid='signup-button'
         disabled={!(validateEmail(email) && validatePassword(password))}>
         submit
       </button>
@@ -42,4 +45,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUpPage;

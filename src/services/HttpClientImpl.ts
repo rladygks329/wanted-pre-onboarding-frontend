@@ -1,4 +1,4 @@
-import HttpClient from './interfaces/HttpClient';
+import HttpClient from '../types/HttpClient';
 import TokenRepository from './TokenRepository';
 
 class HttpClientImpl implements HttpClient {
@@ -22,10 +22,10 @@ class HttpClientImpl implements HttpClient {
       })
       .then((response) => {
         if (!response.ok) {
-          alert(`에러 코드: ${response.status}`);
+          alert(`네트워크 에러 ${response.status}`);
           throw response;
         }
-        return response.json;
+        return response;
       });
   }
 }

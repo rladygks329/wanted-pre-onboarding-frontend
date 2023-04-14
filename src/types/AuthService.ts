@@ -1,5 +1,5 @@
 import HttpClient from './HttpClient';
-import TokenRepository from '../TokenRepository';
+import TokenRepository from '../services/TokenRepository';
 
 interface AuthService {
   httpClient: HttpClient;

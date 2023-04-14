@@ -1,8 +1,7 @@
 import '@testing-library/jest-dom/extend-expect';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { isDisabled } from '@testing-library/user-event/dist/utils';
-import SignIn from '../pages/SignIn';
-import SignUp from '../pages/SignUp';
+import SignInPage from '../pages/SignInPage';
+import SignUpPage from '../pages/SignUpPage';
 import { validateEmail, validatePassword } from '../utils/validation';
 
 const mockedUsedNavigate = jest.fn();
@@ -14,7 +13,7 @@ jest.mock('react-router-dom', () => ({
 
 describe('Assignment 1', () => {
   test('signin', () => {
-    render(<SignIn />);
+    render(<SignInPage />);
     const emailInput = screen.getByTestId('email-input');
     const passwordInput = screen.getByTestId('password-input');
     const btn = screen.getByTestId('signin-button');
@@ -49,7 +48,7 @@ describe('Assignment 1', () => {
   });
 
   it('signup', () => {
-    render(<SignUp />);
+    render(<SignUpPage />);
     const emailInput = screen.getByTestId('email-input');
     const passwordInput = screen.getByTestId('password-input');
     const btn = screen.getByTestId('signup-button');
