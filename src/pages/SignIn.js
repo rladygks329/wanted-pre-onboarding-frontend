@@ -1,16 +1,17 @@
-import loginService from '../services/loginService';
 import { useNavigate } from 'react-router-dom';
 import useInput from '../hooks/useInput';
 import { validateEmail, validatePassword } from '../utils/validation';
+import { useAuth } from '../contexts/AuthContext';
 
 const SignIn = () => {
   const navigate = useNavigate();
   const [email, updateEmail] = useInput('');
   const [password, updatePassword] = useInput('');
+  const { signin } = useAuth();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    loginService.login(email, password).then(() => {
+    signin(email, password).then(() => {
       navigate('/todo');
     });
   };

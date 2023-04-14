@@ -12,11 +12,12 @@ class AuthServiceImpl implements LoginService {
   }
 
   async signin(email: string, password: string) {
-    const data = await this.httpClient.fetch('/auth/signin', {
+    const response = await this.httpClient.fetch('/auth/signin', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
     });
 
+    const data = await response.json();
     this.tokenRepo.set(data.access_token);
 
     return;

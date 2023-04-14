@@ -14,8 +14,8 @@ class TodoServiceImpl implements TodoService {
       .fetch('/todos', {
         method: 'GET',
       })
-      .then((todos: Todo[]) => {
-        return todos;
+      .then((response) => {
+        return response.json();
       });
   }
 
@@ -25,13 +25,17 @@ class TodoServiceImpl implements TodoService {
         method: 'POST',
         body: JSON.stringify({ todo }),
       })
-      .then((todo: Todo) => {
-        return todo;
+      .then((response) => {
+        return response.json();
       });
   }
 
   async deleteTodo(id: number): Promise<void> {
-    return this.httpClient.fetch(`/todos${id}`, { method: 'DELETE' });
+    return this.httpClient
+      .fetch(`/todos${id}`, { method: 'DELETE' })
+      .then((response) => {
+        return;
+      });
   }
 
   async updateTodo(
@@ -41,8 +45,8 @@ class TodoServiceImpl implements TodoService {
   ): Promise<Todo> {
     return this.httpClient
       .fetch(`/todos${id}`, { todo, isCompleted })
-      .then((Todo: Todo) => {
-        return Todo;
+      .then((response) => {
+        return response.json();
       });
   }
 }
