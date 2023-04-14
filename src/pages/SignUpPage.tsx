@@ -2,14 +2,15 @@ import { useNavigate } from 'react-router-dom';
 import useInput from '../hooks/useInput';
 import { validateEmail, validatePassword } from '../utils/validation';
 import { useAuth } from '../contexts/AuthContext';
+import { FormEvent } from 'react';
 
-const SignUp = () => {
+const SignUpPage = () => {
   const navigate = useNavigate();
-  const [email, updateEmail] = useInput('');
-  const [password, updatePassword] = useInput('');
+  const { data: email, updateData: updateEmail } = useInput('');
+  const { data: password, updateData: updatePassword } = useInput('');
   const { signup } = useAuth();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     signup(email, password).then(() => {
       navigate('/signin');
@@ -44,4 +45,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignUpPage;

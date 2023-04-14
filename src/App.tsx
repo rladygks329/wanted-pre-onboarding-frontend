@@ -1,12 +1,12 @@
 import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom';
 import { Header } from './components/Header';
-import SignUp from './pages/SignUp';
-import SignIn from './pages/SignIn';
+import SignUpPage from './pages/SignUpPage';
+import SignInPage from './pages/SignInPage';
 import TodoPage from './pages/TodoPage';
 import AuthRoute from './routers/AuthRoute';
 import NonAuthRoute from './routers/NonAuthRoute';
 import styled from 'styled-components';
-import a from './assets/background.jpg';
+import bg from './assets/background.jpg';
 
 function App() {
   return (
@@ -21,8 +21,8 @@ function App() {
               <Route path='/todo' element={<TodoPage />} />
             </Route>
             <Route element={<NonAuthRoute />}>
-              <Route path='/signup' element={<SignUp />} />
-              <Route path='/signin' element={<SignIn />} />
+              <Route path='/signup' element={<SignUpPage />} />
+              <Route path='/signin' element={<SignInPage />} />
             </Route>
           </Routes>
         </BrowserRouter>
@@ -33,7 +33,7 @@ function App() {
 
 const BackGround = styled.div`
   height: 100vh;
-  background-image: url(${a});
+  background-image: url(${bg});
 `;
 const Wrapper = styled.div`
   width: 80%;
