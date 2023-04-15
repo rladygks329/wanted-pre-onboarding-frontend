@@ -4,6 +4,7 @@ import { useTodo } from '../contexts/TodoContext';
 import { useDispatch } from 'react-redux';
 import { addTodo } from '../reudx/actions';
 import styled from 'styled-components';
+import { GrAdd } from 'react-icons/gr';
 
 const AddTodo = () => {
   const { data: content, updateData: setContent } = useInput('');
@@ -22,18 +23,36 @@ const AddTodo = () => {
   };
 
   return (
-    <AddTodoWrapper>
-      <form onSubmit={handleSubmit}>
-        <input data-testid='new-todo-input' onChange={setContent} />
-        <button data-testid='new-todo-add-button'>만들기</button>
-      </form>
+    <AddTodoWrapper onSubmit={handleSubmit}>
+      <InputPrompt
+        data-testid='new-todo-input'
+        value={content}
+        onChange={setContent}
+      />
+      <AddButton data-testid='new-todo-add-button'>
+        <GrAdd />
+      </AddButton>
     </AddTodoWrapper>
   );
 };
 
-const AddTodoWrapper = styled.div`
+const AddTodoWrapper = styled.form`
   display: flex;
-  justify-content: center;
-  width: 100%;
+  width: 80%;
 `;
+
+const InputPrompt = styled.input`
+  flex-grow: 1;
+  height: 1.5rem;
+  border-radius: 0.5rem;
+  font-size: larger;
+  padding: 0.5rem;
+  margin-right: 0.2rem;
+`;
+
+const AddButton = styled.button`
+  width: 3rem;
+  border-radius: 0.5rem;
+`;
+
 export { AddTodo };
