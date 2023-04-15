@@ -10,6 +10,7 @@ import {
 } from '../reudx/actions';
 import styled from 'styled-components';
 import { AiFillEdit, AiFillDelete } from 'react-icons/ai';
+import { MdSend, MdCancel } from 'react-icons/md';
 
 const TodoItem = React.memo((props: Todo) => {
   const { id, todo, isCompleted } = props;
@@ -58,24 +59,24 @@ const TodoItem = React.memo((props: Todo) => {
         <>
           <Input data-testid='modify-input' value={input} onChange={setInput} />
           <ButtonWrapper>
-            <button data-testid='submit-button' onClick={handleEdit}>
-              제출
-            </button>
-            <button data-testid='cancel-button' onClick={handleCancel}>
-              취소
-            </button>
+            <IconButton data-testid='submit-button' onClick={handleEdit}>
+              <MdSend size={'1.5em'} />
+            </IconButton>
+            <IconButton data-testid='cancel-button' onClick={handleCancel}>
+              <MdCancel size={'1.5em'} />
+            </IconButton>
           </ButtonWrapper>
         </>
       ) : (
         <>
           <ContentWrapper>{todo}</ContentWrapper>
           <ButtonWrapper>
-            <EditButton data-testid='modify-button' onClick={toggleIsEditting}>
+            <IconButton data-testid='modify-button' onClick={toggleIsEditting}>
               <AiFillEdit size={'1.5em'} />
-            </EditButton>
-            <DeleteButton data-testid='delete-button' onClick={handleRemove}>
+            </IconButton>
+            <IconButton data-testid='delete-button' onClick={handleRemove}>
               <AiFillDelete size={'1.5em'} />
-            </DeleteButton>
+            </IconButton>
           </ButtonWrapper>
         </>
       )}
@@ -109,13 +110,10 @@ const ContentWrapper = styled.div`
   font-size: 1.5rem;
 `;
 
-const ButtonWrapper = styled.div`
-  display: inline-block;
-`;
+const ButtonWrapper = styled.div``;
 
-const EditButton = styled.span`
+const IconButton = styled.span`
   margin: 0.5rem;
 `;
-const DeleteButton = styled.span``;
 
 export default TodoItem;
