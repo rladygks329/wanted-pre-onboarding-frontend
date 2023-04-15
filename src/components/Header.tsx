@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { getDayOfWeek } from '../utils/getDayOfWeek';
 
 export const Header = () => {
   const today = new Date();
@@ -13,7 +14,7 @@ export const Header = () => {
         </RightBox>
       </DateWrapper>
       <HeaderTitle>Todo List</HeaderTitle>
-      <TextDiv>수요일</TextDiv>
+      <TextDiv>{getDayOfWeek()}</TextDiv>
     </HeaderWrapper>
   );
 };
