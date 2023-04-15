@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { getDayOfWeek } from '../utils/getDayOfWeek';
 
 export const Header = () => {
   const today = new Date();
@@ -6,14 +7,14 @@ export const Header = () => {
   return (
     <HeaderWrapper>
       <DateWrapper>
-        <LeftBox>{today.getMonth() + 1}</LeftBox>
+        <LeftBox>{today.getMonth().toLocaleString()}</LeftBox>
         <RightBox>
           <div>{today.getFullYear()}</div>
           <div>{today.getDate()}</div>
         </RightBox>
       </DateWrapper>
       <HeaderTitle>Todo List</HeaderTitle>
-      <div>수요일</div>
+      <TextDiv>{getDayOfWeek()}</TextDiv>
     </HeaderWrapper>
   );
 };
@@ -23,8 +24,7 @@ const HeaderWrapper = styled.header`
   height: auto;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
 `;
 
 const DateWrapper = styled.div`
@@ -49,7 +49,13 @@ const RightBox = styled.div`
   flex-direction: column;
 `;
 
-const HeaderTitle = styled.div`
+const HeaderTitle = styled.h1`
+  flex-grow: 1;
+  text-align: center;
   font-size: larger;
   font-weight: 1000;
+`;
+
+const TextDiv = styled.div`
+  padding: 0.5rem;
 `;

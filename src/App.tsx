@@ -7,11 +7,14 @@ import AuthRoute from './routers/AuthRoute';
 import NonAuthRoute from './routers/NonAuthRoute';
 import styled from 'styled-components';
 import bg from './assets/background.jpg';
+import { Navbar } from './components/Navbar';
 
 function App() {
   return (
-    <BackGround>
+    <>
+      <BackGround></BackGround>
       <Wrapper>
+        <Navbar />
         <BrowserRouter basename={process.env.PUBLIC_URL}>
           <Header />
           <Routes>
@@ -27,15 +30,27 @@ function App() {
           </Routes>
         </BrowserRouter>
       </Wrapper>
-    </BackGround>
+    </>
   );
 }
 
 const BackGround = styled.div`
+  ::after {
+  }
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   height: 100vh;
+  opacity: 0.5;
   background-image: url(${bg});
+  z-index: -1;
 `;
+
 const Wrapper = styled.div`
+  height: 100vh;
+  z-index: 1;
   width: 80%;
   display: flex;
   margin: 0 auto;

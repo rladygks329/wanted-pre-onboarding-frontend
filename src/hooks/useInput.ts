@@ -8,7 +8,11 @@ const useInput = (initialState: string) => {
     setData(value);
   };
 
-  return { data, updateData };
+  const resetInput = () => {
+    setData('');
+  };
+
+  return { data, updateData, resetInput };
 };
 
 export default useInput;
