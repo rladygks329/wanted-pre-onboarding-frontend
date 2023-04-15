@@ -22,7 +22,7 @@ class HttpClientImpl implements HttpClient {
       })
       .then((response) => {
         if (!response.ok) {
-          alert(`네트워크 에러 ${response.status}`);
+          alert(`에러 발생 ${response.status}`);
           throw response;
         }
         return response;

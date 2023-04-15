@@ -12,7 +12,7 @@ const useInput = (initialState: string) => {
     setData('');
   };
 
-  return { data, updateData, resetInput };
+  return [data, updateData, resetInput] as const;
 };
 
 export default useInput;

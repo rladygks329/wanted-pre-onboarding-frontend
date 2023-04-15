@@ -7,8 +7,8 @@ import styled from 'styled-components';
 
 const SignUpPage = () => {
   const navigate = useNavigate();
-  const { data: email, updateData: updateEmail } = useInput('');
-  const { data: password, updateData: updatePassword } = useInput('');
+  const [email, updateEmail] = useInput('');
+  const [password, updatePassword] = useInput('');
   const { signup } = useAuth();
 
   const handleSubmit = (event: FormEvent) => {
