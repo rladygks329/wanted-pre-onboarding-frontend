@@ -17,8 +17,8 @@ const TodoItem = React.memo((props: Todo) => {
   const { updateTodo, deleteTodo } = useTodo();
   const dispatch = useDispatch();
 
-  const { data: input, updateData: setInput } = useInput(todo);
-  const { data: isEditing, toggleData: toggleIsEditting } = useToggle(false);
+  const [input, setInput] = useInput(todo);
+  const [isEditing, toggleIsEditting] = useToggle(false);
 
   const toggleComplete = (e: any) => {
     updateTodo(id, input, !isCompleted).then((todo) => {

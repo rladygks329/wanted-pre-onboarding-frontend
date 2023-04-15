@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import { GrAdd } from 'react-icons/gr';
 
 const AddTodo = () => {
-  const { data: content, updateData: setContent, resetInput } = useInput('');
+  const [content, setContent, resetContent] = useInput('');
   const dispatch = useDispatch();
   const { createTodo } = useTodo();
 
@@ -20,7 +20,7 @@ const AddTodo = () => {
     createTodo(content).then((newTodo) => {
       dispatch(addTodo(newTodo));
     });
-    resetInput();
+    resetContent();
   };
 
   return (
