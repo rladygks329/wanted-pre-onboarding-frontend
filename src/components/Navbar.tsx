@@ -4,9 +4,11 @@ const Navbar = () => {
   return (
     <NavWrapper>
       <NavLogo />
-      <NavContent href='/signin'>로그인</NavContent>
-      <NavContent href='/signup'>회원가입</NavContent>
-      <NavContent href='/todo'>TodoList</NavContent>
+      <NavContent href={`${process.env.PUBLIC_URL}/signin`}>로그인</NavContent>
+      <NavContent href={`${process.env.PUBLIC_URL}/signup`}>
+        회원가입
+      </NavContent>
+      <NavContent href={`${process.env.PUBLIC_URL}/todo`}>TodoList</NavContent>
     </NavWrapper>
   );
 };
