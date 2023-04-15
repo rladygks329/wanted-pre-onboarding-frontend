@@ -49,7 +49,7 @@ const RightBox = styled.div`
   flex-direction: column;
 `;
 
-const HeaderTitle = styled.div`
+const HeaderTitle = styled.h1`
   flex-grow: 1;
   text-align: center;
   font-size: larger;
