@@ -12,10 +12,11 @@ const AddTodo = () => {
   const { createTodo } = useTodo();
 
   const handleSubmit = (event: FormEvent) => {
-    const target = event.target as HTMLFormElement;
-
     event.preventDefault();
-    target.reset();
+    if (content.length === 0) {
+      alert('내용이 비어 있어요!');
+      return;
+    }
 
     createTodo(content).then((newTodo) => {
       dispatch(addTodo(newTodo));
