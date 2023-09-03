@@ -7,7 +7,7 @@ export const Header = () => {
   return (
     <HeaderWrapper>
       <DateWrapper>
-        <LeftBox>{today.getMonth().toLocaleString()}</LeftBox>
+        <LeftBox>{today.getMonth() + 1}</LeftBox>
         <RightBox>
           <div>{today.getFullYear()}</div>
           <div>{today.getDate()}</div>
