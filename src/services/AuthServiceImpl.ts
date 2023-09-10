@@ -11,7 +11,7 @@ class AuthServiceImpl implements LoginService {
     this.tokenRepo = repo;
   }
 
-  async signin(email: string, password: string) {
+  async signIn(email: string, password: string) {
     const response = await this.httpClient.fetch('/auth/signin', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
@@ -23,12 +23,17 @@ class AuthServiceImpl implements LoginService {
     return;
   }
 
-  async signup(email: string, password: string) {
+  async signUp(email: string, password: string) {
     await this.httpClient.fetch('/auth/signup', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
     });
 
+    return;
+  }
+
+  async signOff(): Promise<void> {
+    this.tokenRepo.clear();
     return;
   }
 }

@@ -5,8 +5,9 @@ interface AuthService {
   httpClient: HttpClient;
   tokenRepo: TokenRepository;
 
-  signin(email: string, password: string): Promise<void>;
-  signup(email: string, password: string): Promise<void>;
+  signIn(email: string, password: string): Promise<void>;
+  signUp(email: string, password: string): Promise<void>;
+  signOff(): Promise<void>;
 }
 
 export default AuthService;

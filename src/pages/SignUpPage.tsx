@@ -9,11 +9,11 @@ const SignUpPage = () => {
   const navigate = useNavigate();
   const [email, updateEmail] = useInput('');
   const [password, updatePassword] = useInput('');
-  const { signup } = useAuth();
+  const { signUp } = useAuth();
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    signup(email, password).then(() => {
+    signUp(email, password).then(() => {
       navigate('/signin');
     });
   };

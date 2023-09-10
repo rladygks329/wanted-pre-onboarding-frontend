@@ -13,7 +13,7 @@ test('AuthService', async () => {
 
   const loginService = new LoginServiceImpl(tokenRepo, httpClient);
 
-  await loginService.signin('1234@aaa10', '111111119');
+  await loginService.signIn('1234@aaa10', '111111119');
 
   let token = tokenRepo.get();
   expect(token).not.toBe('');

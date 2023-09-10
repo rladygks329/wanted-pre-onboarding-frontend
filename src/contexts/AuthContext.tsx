@@ -2,11 +2,11 @@ import { createContext, useContext } from 'react';
 import AuthService from '../types/AuthService';
 
 const AuthContext = createContext({
-  signin: async (email: string, password: string) => {
+  signIn: async (email: string, password: string) => {
     return;
   },
 
-  signup: async (email: string, password: string) => {
+  signUp: async (email: string, password: string) => {
     return;
   },
 });
@@ -19,11 +19,11 @@ export function AuthProvider({
   children: React.ReactNode;
   authService: AuthService;
 }) {
-  const signin = authService.signin.bind(authService);
-  const signup = authService.signup.bind(authService);
+  const signIn = authService.signIn.bind(authService);
+  const signUp = authService.signUp.bind(authService);
 
   return (
-    <AuthContext.Provider value={{ signin, signup }}>
+    <AuthContext.Provider value={{ signIn, signUp }}>
       {children}
     </AuthContext.Provider>
   );

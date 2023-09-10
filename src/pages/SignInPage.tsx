@@ -10,10 +10,10 @@ const SignInPage = () => {
   const [email, updateEmail] = useInput('');
   const [password, updatePassword] = useInput('');
 
-  const { signin } = useAuth();
+  const { signIn } = useAuth();
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    signin(email, password).then(() => {
+    signIn(email, password).then(() => {
       navigate('/todo');
     });
   };
