@@ -13,9 +13,17 @@ const SignInPage = () => {
   const { signIn } = useAuth();
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    signIn(email, password).then(() => {
-      navigate('/todo');
-    });
+    signIn(email, password)
+      .then(() => {
+        navigate('/todo');
+      })
+      .catch((e: any) => {
+        if (e.statusCode === 401) {
+          alert('ID 또는 비밀번호를 확인 해주세요.');
+        } else {
+          alert(`error code : ${e.statusCode} ${e.message}`);
+        }
+      });
   };
 
   return (

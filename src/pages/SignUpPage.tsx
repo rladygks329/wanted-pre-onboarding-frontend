@@ -13,9 +13,13 @@ const SignUpPage = () => {
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    signUp(email, password).then(() => {
-      navigate('/signin');
-    });
+    signUp(email, password)
+      .then(() => {
+        navigate('/signin');
+      })
+      .catch((e: any) => {
+        alert(e.message);
+      });
   };
 
   return (
