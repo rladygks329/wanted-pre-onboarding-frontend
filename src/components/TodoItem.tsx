@@ -21,9 +21,13 @@ const TodoItem = React.memo((props: Todo) => {
   const [isEditing, toggleIsEditting] = useToggle(false);
 
   const toggleComplete = (e: any) => {
-    updateTodo(id, input, !isCompleted).then((todo) => {
-      dispatch(reduxUpdate(todo));
-    });
+    updateTodo(id, input, !isCompleted)
+      .then((todo) => {
+        dispatch(reduxUpdate(todo));
+      })
+      .catch((e) => {
+        alert('세션이 만료 되었습니다. 다시 로그인 해주세요');
+      });
   };
 
   const handleEdit = (e: any) => {
@@ -31,16 +35,24 @@ const TodoItem = React.memo((props: Todo) => {
       alert('내용이 비어있어요!');
       return;
     }
-    updateTodo(id, input, isCompleted).then((todo) => {
-      dispatch(reduxUpdate(todo));
-    });
+    updateTodo(id, input, isCompleted)
+      .then((todo) => {
+        dispatch(reduxUpdate(todo));
+      })
+      .catch((e) => {
+        alert('세션이 만료 되었습니다. 다시 로그인 해주세요');
+      });
     toggleIsEditting();
   };
 
   const handleRemove = (e: any) => {
-    deleteTodo(id).then(() => {
-      dispatch(reduxDelete(id));
-    });
+    deleteTodo(id)
+      .then(() => {
+        dispatch(reduxDelete(id));
+      })
+      .catch((e) => {
+        alert('세션이 만료 되었습니다. 다시 로그인 해주세요');
+      });
   };
   const handleCancel = (e: any) => {
     toggleIsEditting();

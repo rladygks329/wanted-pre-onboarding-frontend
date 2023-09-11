@@ -10,32 +10,43 @@ class TodoServiceImpl implements TodoService {
   }
 
   async getTodos(): Promise<Todo[]> {
-    return this.httpClient
-      .fetch('/todos', {
-        method: 'GET',
-      })
-      .then((response) => {
-        return response.json();
-      });
+    const response = await this.httpClient.fetch('/todos', { method: 'GET' });
+    const data = await response.json();
+
+    if (!response.ok) {
+      this.httpClient.tokenRepo.clear();
+      window.location.reload();
+      throw data;
+    }
+    return data;
   }
 
   async createTodo(todo: string): Promise<Todo> {
-    return this.httpClient
-      .fetch('/todos', {
-        method: 'POST',
-        body: JSON.stringify({ todo }),
-      })
-      .then((response) => {
-        return response.json();
-      });
+    const response = await this.httpClient.fetch('/todos', {
+      method: 'POST',
+      body: JSON.stringify({ todo }),
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      this.httpClient.tokenRepo.clear();
+      window.location.reload();
+      throw data;
+    }
+    return data;
   }
 
   async deleteTodo(id: number): Promise<void> {
-    return this.httpClient
-      .fetch(`/todos/${id}`, { method: 'DELETE' })
-      .then((response) => {
-        return;
-      });
+    const response = await this.httpClient.fetch(`/todos/${id}`, {
+      method: 'DELETE',
+    });
+
+    if (!response.ok) {
+      this.httpClient.tokenRepo.clear();
+      window.location.reload();
+      throw response;
+    }
+    return;
   }
 
   async updateTodo(
@@ -43,14 +54,18 @@ class TodoServiceImpl implements TodoService {
     todo: string,
     isCompleted: boolean
   ): Promise<Todo> {
-    return this.httpClient
-      .fetch(`/todos/${id}`, {
-        method: 'PUT',
-        body: JSON.stringify({ todo, isCompleted }),
-      })
-      .then((response) => {
-        return response.json();
-      });
+    const response = await this.httpClient.fetch(`/todos/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify({ todo, isCompleted }),
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      this.httpClient.tokenRepo.clear();
+      window.location.reload();
+      throw data;
+    }
+    return data;
   }
 }
 
