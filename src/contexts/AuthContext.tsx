@@ -25,7 +25,9 @@ export function AuthProvider({
   children: React.ReactNode;
   authService: AuthService;
 }) {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    authService.tokenRepo.get() !== ''
+  );
 
   const signIn = async (email: string, password: string) => {
     await authService.signIn(email, password);
