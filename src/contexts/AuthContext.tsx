@@ -1,15 +1,21 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useState } from 'react';
 import AuthService from '../types/AuthService';
 
 const AuthContext = createContext({
-  signin: async (email: string, password: string) => {
+  signIn: async (email: string, password: string) => {
     return;
   },
 
-  signup: async (email: string, password: string) => {
+  signUp: async (email: string, password: string) => {
     return;
   },
+
+  signOff: async () => {
+    return;
+  },
+  isLoggedIn: false,
 });
+
 export const useAuth = () => useContext(AuthContext);
 
 export function AuthProvider({
@@ -19,11 +25,24 @@ export function AuthProvider({
   children: React.ReactNode;
   authService: AuthService;
 }) {
-  const signin = authService.signin.bind(authService);
-  const signup = authService.signup.bind(authService);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    authService.tokenRepo.get() !== ''
+  );
+
+  const signIn = async (email: string, password: string) => {
+    await authService.signIn(email, password);
+    setIsLoggedIn(authService.tokenRepo.get() !== '');
+    return;
+  };
+  const signUp = authService.signUp.bind(authService);
+
+  const signOff = async () => {
+    await authService.signOff();
+    setIsLoggedIn(authService.tokenRepo.get() !== '');
+  };
 
   return (
-    <AuthContext.Provider value={{ signin, signup }}>
+    <AuthContext.Provider value={{ signIn, signUp, signOff, isLoggedIn }}>
       {children}
     </AuthContext.Provider>
   );

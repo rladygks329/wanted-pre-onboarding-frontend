@@ -1,10 +1,21 @@
 import styled from 'styled-components';
+import { useAuth } from '../contexts/AuthContext';
 
 const Navbar = () => {
+  const { signOff, isLoggedIn } = useAuth();
+
   return (
     <NavWrapper>
       <NavLogo />
-      <NavContent href={`${process.env.PUBLIC_URL}/signin`}>로그인</NavContent>
+      {isLoggedIn ? (
+        <NavContent onClick={signOff} href={`${process.env.PUBLIC_URL}/signin`}>
+          로그아웃
+        </NavContent>
+      ) : (
+        <NavContent href={`${process.env.PUBLIC_URL}/signin`}>
+          로그인
+        </NavContent>
+      )}
       <NavContent href={`${process.env.PUBLIC_URL}/signup`}>
         회원가입
       </NavContent>

@@ -1,25 +1,27 @@
 import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom';
-import { Header } from './components/Header';
+import styled from 'styled-components';
+import bg from './assets/background.jpg';
+
 import SignUpPage from './pages/SignUpPage';
 import SignInPage from './pages/SignInPage';
 import TodoPage from './pages/TodoPage';
+
+import { Header } from './components/Header';
+import { Navbar } from './components/Navbar';
+
 import AuthRoute from './routers/AuthRoute';
 import NonAuthRoute from './routers/NonAuthRoute';
-import styled from 'styled-components';
-import bg from './assets/background.jpg';
-import { Navbar } from './components/Navbar';
 
 function App() {
   return (
     <>
       <BackGround />
       <Wrapper>
-        <Navbar />
         <BrowserRouter basename={process.env.PUBLIC_URL}>
+          <Navbar />
           <Header />
           <Routes>
             <Route path='/*' element={<Navigate to='/todo' />} />
-
             <Route element={<AuthRoute />}>
               <Route path='/todo' element={<TodoPage />} />
             </Route>

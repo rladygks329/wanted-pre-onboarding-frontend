@@ -11,24 +11,36 @@ class AuthServiceImpl implements LoginService {
     this.tokenRepo = repo;
   }
 
-  async signin(email: string, password: string) {
+  async signIn(email: string, password: string) {
     const response = await this.httpClient.fetch('/auth/signin', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
     });
 
     const data = await response.json();
+    if (!response.ok) {
+      throw data;
+    }
     this.tokenRepo.set(data.access_token);
-
     return;
   }
 
-  async signup(email: string, password: string) {
-    await this.httpClient.fetch('/auth/signup', {
+  async signUp(email: string, password: string) {
+    const response = await this.httpClient.fetch('/auth/signup', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
     });
 
+    // 비어있으므로 ok가 아닐경우에만
+    if (!response.ok) {
+      const data = await response.json();
+      throw data;
+    }
+    return;
+  }
+
+  async signOff(): Promise<void> {
+    this.tokenRepo.clear();
     return;
   }
 }

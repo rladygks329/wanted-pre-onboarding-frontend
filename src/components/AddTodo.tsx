@@ -18,9 +18,13 @@ const AddTodo = () => {
       return;
     }
 
-    createTodo(content).then((newTodo) => {
-      dispatch(addTodo(newTodo));
-    });
+    createTodo(content)
+      .then((newTodo) => {
+        dispatch(addTodo(newTodo));
+      })
+      .catch((e) => {
+        alert('다시 로그인 해주세요');
+      });
     resetContent();
   };
 
