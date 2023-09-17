@@ -32,7 +32,13 @@ const SignUpPage = () => {
         name='email'
         value={email}
         onChange={updateEmail}
+        title='@ 가 포함되어야 합니다.'
+        pattern='.*@.*'
+        required
       />
+      {email.length !== 0 && !validateEmail(email) && (
+        <Tooltip>@가 포함되어야합니다.</Tooltip>
+      )}
       <Input
         data-testid='password-input'
         type='password'
@@ -40,7 +46,13 @@ const SignUpPage = () => {
         name='password'
         value={password}
         onChange={updatePassword}
+        title='8자 이상이어야 합니다.'
+        pattern='^.{8,}$'
+        required
       />
+      {password.length !== 0 && !validatePassword(password) && (
+        <Tooltip>8자 이상이여야합니다. </Tooltip>
+      )}
       <Button
         data-testid='signup-button'
         disabled={!(validateEmail(email) && validatePassword(password))}>
@@ -66,10 +78,23 @@ const Input = styled.input`
   font-size: 1.5rem;
   margin: 0 0.2rem;
   border-radius: 0.5rem;
+  :invalid {
+    :placeholder-shown {
+      outline: 2px solid black;
+      border-radius: 5px;
+    }
+    background-color: ivory;
+    border: none;
+    outline: 2px solid red;
+    border-radius: 5px;
+  }
 `;
 
 const Button = styled.button`
   height: 1.5rem;
 `;
 
+const Tooltip = styled.div`
+  color: #ed4337;
+`;
 export default SignUpPage;
