@@ -2,10 +2,10 @@ import HttpClientImpl from '../services/HttpClientImpl';
 import LoginServiceImpl from '../services/AuthServiceImpl';
 import MockStorage from '../services/MockStorage';
 import TokenRepository from '../services/TokenRepository';
-
+import { BASE_URL } from '../utils/constants';
 test('AuthService', async () => {
   const TOKEN_KEY = 'ACCESS_TOKEN';
-  const baseURL = 'https://www.pre-onboarding-selection-task.shop';
+  const baseURL = BASE_URL;
 
   const mockStorage = new MockStorage();
   const tokenRepo = new TokenRepository(mockStorage, TOKEN_KEY);
